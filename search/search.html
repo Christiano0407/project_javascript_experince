@@ -13,18 +13,19 @@
       <nav>
         <div class="search-wrapper">
           <label for="search">Search User</label>
-          <input type="search" id="search" />
+          <input type="search" id="search" data-search />
         </div>
       </nav>
     </header>
     <main>
+      <div class="user-card" data-user-cards-container></div>
       <!-- ===  Add Web Component === -->
-      <div class="user-card">
+      <template data-user-template>
         <div class="card">
-          <p class="header">My Name</p>
-          <span class="body">@gmail.como</span>
+          <p class="header" data-header></p>
+          <span class="body" data-body></span>
         </div>
-      </div>
+      </template>
     </main>
     <footer></footer>
     <script src="./search.js"></script>
