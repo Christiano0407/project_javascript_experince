@@ -1,0 +1,11 @@
+header {
+  width: 100%;
+  padding: 1rem;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-wrapper {
+}
