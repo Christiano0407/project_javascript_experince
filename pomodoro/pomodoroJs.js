@@ -9,6 +9,10 @@ const bAdd = document.querySelector(`#bAddInput`);
 const itTask = document.querySelector(`#itTaskInput`);
 const form = document.querySelector(`#form`);
 const taskName = document.querySelectorAll(`#time #taskName`);
+
+/* renderTime();
+renderTask();
+ */
 //** === Formulary */
 form.addEventListener(`submit`, (e) => {
   e.preventDefault();
@@ -81,9 +85,33 @@ const timerHandler = (id) => {
   /* === Clear Interval Timer === */
   if (time === 0) {
     clearInterval(timer);
+    /*  current = null;
+    taskName.textContent = ``; */
+    taskCompleted(id);
+    timer = null;
+    renderTask();
+    startBreak();
+  }
+};
+//** === Start Break */
+const startBreak = () => {
+  time = 1 * 60;
+  taskName.textContent = 'Break';
+  timerBreak = setInterval(() => {
+    timerBreakHandler();
+  }, 1000);
+};
+//** === TimerBreakHandler */
+const timerBreakHandler = () => {
+  time--;
+  renderTime();
+  /* === Clear Interval Timer === */
+  if (time === 0) {
+    clearInterval(timerBreak);
     current = null;
-    taskName.textContent = ``;
-    renderTime();
+    timerBreak = null;
+    taskName.textContent = '';
+    renderTask();
   }
 };
 
@@ -93,7 +121,13 @@ const renderTime = () => {
   const minutes = parseInt(time / 60);
   const seconds = parseInt(time % 60);
 
-  timerDiv.textContent = `${minutes < 10 ? '0' : ' '}${minutes} : ${
-    seconds < 10 ? '0' : ' '
+  timerDiv.textContent = `${minutes < 10 ? '0' : ''}${minutes} : ${
+    seconds < 10 ? '0' : ''
   }${seconds}`;
+};
+
+//** === Task Completed */
+const taskCompleted = (id) => {
+  const taskIndex = tasks.findIndex((task) => task.id === id);
+  tasks[taskIndex].completed = true;
 };
