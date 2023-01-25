@@ -1,20 +1,32 @@
 //**TODO === ===================== Day Event ==================== ===  */
 //** ==== Variable */
+let events = [];
 const eventName = document.querySelector(`#eventName`);
 const eventDate = document.querySelector(`#eventDate`);
 const bAdd = document.querySelector(`#idBAdd`);
 const taskContainer = document.querySelector(`#tasksContainer`);
 const form = document.querySelector(`#idForm`);
 
+//** ==== === LocalStorage === ===== (A-1) */
+const json = load();
+const arr = JSON.parse(json);
+
 //** ==== Events */
-let events = [];
-let arr = []; // Add Information
+events = [...arr];
+renderEvents();
+//let arr = []; // Add Information
 
 //** === formulary */
 form.addEventListener(`submit`, (e) => {
   e.preventDefault();
+});
+
+//** === BTN bAdd  */
+bAdd.addEventListener(`click`, (e) => {
+  e.preventDefault();
   addEvent();
 });
+
 //** === Add Event */
 const addEvent = () => {
   if (eventName.value === '' || eventDate === '') {
@@ -31,6 +43,8 @@ const addEvent = () => {
   };
   // === Add Array Events ===
   events.unshift(newEvent);
+  // === Save
+  save(JSON.stringify(events));
 
   eventName.value = '';
 
@@ -46,7 +60,7 @@ const dateDiff = (d) => {
 };
 
 //** === render Event = date, name, id => newEvent && data-id => Meta Etiqueta ===  */
-const renderEvents = () => {
+function renderEvents() {
   const eventHTML = events.map((event) => {
     return `
         <div class="event">
@@ -58,11 +72,30 @@ const renderEvents = () => {
             <div class="event-name">${event.name}</div>
             <div class="event-date">${event.date}</div>
 
-            <div class="actions" data-id="${event.id}" >
-                <button class="btnDelete">Delete</button>
+            <div class="actions">
+                <button class="btnDelete"  data-id="${event.id}">Delete</button>
             </div>
         </div>
      `;
   });
   taskContainer.innerHTML = eventHTML.join('');
-};
+  document.querySelectorAll(`.btnDelete`).forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      //console.log('Delete');
+      const id = btn.getAttribute(`data-id`);
+      events = events.filter((event) => event.id !== id);
+      renderEvents();
+    });
+  });
+}
+
+//** ==== === LocalStorage === ===== (A) */
+//**! === Add && Save Data */
+function save(data) {
+  localStorage.setItem(`items`, data);
+}
+//**! === Load Data */
+function load() {
+  return localStorage.getItem(`items`);
+}

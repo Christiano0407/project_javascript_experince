@@ -9,9 +9,10 @@
 button {
   border: none;
   background-color: red;
-  padding: 5px;
+  padding: 1rem 2rem;
   color: white;
   border-radius: 5px;
+  margin-top: 1rem;
 }
 
 .form input {
@@ -70,4 +71,22 @@ input[type='button']:active {
 }
 .task .actions {
   padding: 10px;
+}
+
+/* === Add New Javascript === */
+.event {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 4px solid #333;
+}
+.days {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111;
+}
+.event-name,
+.event-date {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #222;
 }
