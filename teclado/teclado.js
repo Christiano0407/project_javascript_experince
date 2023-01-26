@@ -66,6 +66,7 @@ const keys = [
 
 let mayus = false;
 let shift = false;
+let current = null;
 
 //** === render Keyboard && Access a key === */
 const renderKeyboard = () => {
@@ -82,7 +83,7 @@ const renderKeyboard = () => {
          <button class="key key-mayus">${key[0]}</button>
         `;
       }
-      if (key[0] === 'space') {
+      if (key[0] === 'SPACE') {
         return `
               <button class="key key-space">${key[0]}</button>
             `;
@@ -116,6 +117,40 @@ const renderKeyboard = () => {
   htmlLayers.forEach((layer) => {
     keyboard.innerHTML += `<div class="layer" >${layer}</div>`;
   });
+  // === Event fot Key => Keyboard ===
+  document.querySelectorAll(`.key`).forEach((key) => {
+    key.addEventListener(`click`, (e) => {
+      e.preventDefault();
+      //console.log(e.target);
+      // == Validation == key alternate values ===
+      if (current) {
+        if (key.textContent === `SHIFT`) {
+          shift = !shift;
+          renderKeyboard();
+        } else if (key.textContent === 'MAYUS') {
+          mayus = !mayus;
+          renderKeyboard();
+        } else if (key.textContent === '') {
+          debugger;
+          current.value += ' ';
+        } else {
+          current.value += key.textContent.trim(); // == trim() => delete space white ===
+          // = shift active >
+          if (shift) {
+            shift = false;
+            renderKeyboard();
+          }
+        }
+        current.focus();
+      }
+    });
+  });
 };
-
 renderKeyboard();
+
+//** === Activated with selected  */
+document.querySelectorAll(`input`).forEach((input) => {
+  input.addEventListener(`focusin`, (e) => {
+    current = e.target;
+  });
+});
