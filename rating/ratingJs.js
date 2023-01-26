@@ -21,6 +21,10 @@ document.querySelectorAll(`.item`).forEach((item) => {
     e.preventDefault();
     const position = item.getAttribute(`data-position`);
 
+    if (currentValue === parseInt(position) + 1) {
+      return;
+    }
+
     document.querySelectorAll(`.item`).forEach((itemElement) => {
       if (itemElement.classList.contains(`item-full`)) {
         itemElement.classList.remove(`item-full`);
@@ -33,5 +37,14 @@ document.querySelectorAll(`.item`).forEach((item) => {
         squareColor.classList.add(`item-full`);
       }
     }
+    // == Validating Position ===
+    currentValue = parseInt(position) + 1;
+  });
+
+  // === Get Value Star Position ===
+  item.addEventListener(`click`, (e) => {
+    const pos = item.getAttribute(`data-position`);
+    currentValue = parseInt(pos) + 1;
+    console.log(currentValue);
   });
 });
