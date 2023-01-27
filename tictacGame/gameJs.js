@@ -61,7 +61,20 @@ function playerPlay() {
       cell.addEventListener(`click`, (e) => {
         board[row][column] = 'O';
         cell.textContent = board[row][column];
-        pcPlay();
+        // = turn
+        turn = 1;
+        // = Winner ==
+        const won = checkIfWinner();
+        if (won === 'none') {
+          pcPlay();
+          return;
+        }
+        // == Empty & Cat Close =
+        if (won === 'draw') {
+          renderDraw();
+          cell.removeEventListener(`click`, this);
+          return;
+        }
       });
     }
   });
@@ -73,8 +86,50 @@ function pcPlay() {
   setTimeout(() => {
     let played = false;
     const options = checkIfCanWin();
+
+    if (options.length > 0) {
+      const bestOption = options[0];
+      for (let i = 0; i < bestOption.length; i++) {
+        if (bestOption[i].value === 0) {
+          const posI = bestOption[i].i;
+          const postJ = bestOption[i].j;
+          board[posI][postJ] = 'X';
+          played = true;
+          break;
+        }
+      }
+    } else {
+      for (let i = 0; i < board.length; i++) {
+        for (j = 0; j < board.length; j++) {
+          if (board[i][j] === '' && !played) {
+            board[i][j] = 'X';
+            played = true;
+          }
+        }
+      }
+    }
+
+    turn = 0;
+    renderBoard();
+    renderCurrentPlayer();
+    playerPlay();
+
+    const won = checkIfWinner();
+    if (won === 'none') {
+      playerPlay();
+      return;
+    }
+
+    if (won === 'draw') {
+      renderDraw();
+      return;
+    }
   }, 1500);
 }
+//** === Draw */
+const renderDraw = () => {
+  player.textContent = 'Draw';
+};
 
 //** === CheckIfCanWin (A-1) */
 const checkIfCanWin = () => {
@@ -120,6 +175,7 @@ const checkIfCanWin = () => {
   const s7 = [p1, p5, p9];
   const s8 = [p3, p5, p7];
   //**! ===> Response  */
+  // => 2 >= Position Win && 4 >= Position Block
   const response = [s1, s2, s3, s4, s5, s6, s7, s8].filter((line) => {
     return (
       line[0].value + line[1].value + line[2].value === 2 ||
@@ -130,4 +186,59 @@ const checkIfCanWin = () => {
 };
 
 //** === checkIfWinner*/
-const checkIfWinner = () => {};
+const checkIfWinner = () => {
+  // === Position
+  const p1 = arr[0][0];
+  const p2 = arr[0][1];
+  const p3 = arr[0][2];
+  const p4 = arr[1][0];
+  const p5 = arr[1][1];
+  const p6 = arr[1][2];
+  const p7 = arr[2][0];
+  const p8 = arr[2][1];
+  const p9 = arr[2][2];
+  // >= Pc Win:
+  const PCWon = [
+    p1 === 'X' && p5 === 'X' && p9 === 'X',
+    p7 === 'X' && p5 === 'X' && p3 === 'X',
+    p1 === 'X' && p4 === 'X' && p7 === 'X',
+    p2 === 'X' && p5 === 'X' && p8 === 'X',
+    p3 === 'X' && p6 === 'X' && p9 === 'X',
+    p1 === 'X' && p2 === 'X' && p3 === 'X',
+    p4 === 'X' && p5 === 'X' && p6 === 'X',
+    p7 === 'X' && p8 === 'X' && p9 === 'X',
+  ];
+  // >= Player Win:
+  const playerWon = [
+    p1 === 'O' && p5 === 'O' && p9 === 'O',
+    p7 === 'O' && p5 === 'O' && p3 === 'O',
+    p1 === 'O' && p4 === 'O' && p7 === 'O',
+    p2 === 'O' && p5 === 'O' && p8 === 'O',
+    p3 === 'O' && p6 === 'O' && p9 === 'O',
+    p1 === 'O' && p2 === 'O' && p3 === 'O',
+    p4 === 'O' && p5 === 'O' && p6 === 'O',
+    p7 === 'O' && p8 === 'O' && p9 === 'O',
+  ];
+  // === Validation ===
+  if (PCWon.includes(true)) {
+    console.log('PCWon');
+    player.textContent = 'Pc Win! Your Player Lose.';
+    return 'pcWon';
+  }
+
+  if (playerWon.includes(true)) {
+    console.log('Player Win!');
+    player.textContent = 'Player Win!!';
+    return `playerWon`;
+  }
+  // === Draw => Empty not Draw ===
+  let draw = true;
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      if (board[i][j] === '') {
+        draw = false;
+      }
+    }
+  }
+  return draw ? 'draw' : 'none'; // = Empty => Empate =
+};
