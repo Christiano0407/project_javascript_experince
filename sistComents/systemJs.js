@@ -55,8 +55,40 @@ const renderComments = (arr, parent) => {
     replyButton.classList.add(`btn-reply`);
     const likeButton = document.createElement(`button`);
     likeButton.classList.add(`btn-like`);
-
+    const actionContainer = document.createElement(`div`);
+    actionContainer.classList.add(`btnAction-response`);
+    // === TextContent Response
+    const textContainer = document.createElement(`div`);
+    textContainer.textContent = element.text;
+    // ===>
     replyButton.textContent = `Reply`;
-    likeButton.textContent = `like`;
+    likeButton.textContent = `
+      ${element.likes > 0 ? `${element.likes} likes` : ``} likes
+    `;
+    // === Events Btn
+    replyButton.addEventListener(`click`, (e) => {
+      // > Clone Input <
+      const newInput = inputContainer.cloneNode(true);
+      newInput.value = ``; // = Clean
+      newInput.focus(); // > Focus in reply
+      newInput.addEventListener(`keydown`, (e) => {
+        handleEnter(e, element); // element == current => ultimate comment
+      });
+      commentContainer.insertBefore(newInput, responseContainer);
+    });
+    likeButton.addEventListener(`click`, (e) => {});
+
+    // === append
+    commentContainer.appendChild(textContainer);
+    commentContainer.appendChild(actionContainer);
+    actionContainer.appendChild(replyButton);
+    actionContainer.appendChild(likeButton);
+    commentContainer.appendChild(responseContainer);
+    // === Validation Recursion Response
+    if (element.response.length > 0) {
+      renderComments(element.response, responseContainer);
+    }
+    // === Add parent
+    parent.appendChild(commentContainer);
   });
 };
