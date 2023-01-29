@@ -6,6 +6,7 @@ const app = document.querySelector(`#app`);
 const commentsContainer = document.querySelector(`#comments-container`);
 //**? === Create DOM  */
 const inputContainer = document.createElement(`div`);
+inputContainer.classList.add(`input-Container`);
 const input = document.createElement(`input`);
 //** === */
 input.classList.add(`input`);
@@ -59,6 +60,7 @@ const renderComments = (arr, parent) => {
     actionContainer.classList.add(`btnAction-response`);
     // === TextContent Response
     const textContainer = document.createElement(`div`);
+    textContainer.classList.add(`text-Comment-response`);
     textContainer.textContent = element.text;
     // ===>
     replyButton.textContent = `Reply`;
@@ -76,7 +78,12 @@ const renderComments = (arr, parent) => {
       });
       commentContainer.insertBefore(newInput, responseContainer);
     });
-    likeButton.addEventListener(`click`, (e) => {});
+    likeButton.addEventListener(`click`, (e) => {
+      element.likes++;
+      likeButton.textContent = `
+      ${element.likes > 0 ? `${element.likes} likes` : ``} likes
+    `;
+    });
 
     // === append
     commentContainer.appendChild(textContainer);
