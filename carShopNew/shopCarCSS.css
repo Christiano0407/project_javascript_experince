@@ -20,14 +20,16 @@
   position: absolute;
   right: 0;
   width: 300px;
-  border: solid 1px #ccc;
+  border: solid 4px #333;
   padding: 10px;
+  background-color: #f8f8f8;
+  top: 0;
 }
-
+/* === Display  ===*/
 .show {
   display: block;
 }
-
+/* === Display None === */
 .hide {
   display: none;
 }
