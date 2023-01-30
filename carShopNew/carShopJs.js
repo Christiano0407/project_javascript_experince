@@ -6,7 +6,6 @@ const shoppingCartContainer = document.querySelector(
   `#shopping-cart-container`
 );
 const storeContainer = document.querySelector(`#store-container`);
-//let shopping = [];
 
 //** === Data Base Products === Simulation Frontend (A) */
 const dataBase = {
@@ -48,7 +47,7 @@ const dataBase = {
   ],
 };
 //console.log(dataBase);
-//** === Shopping Cart (B) */
+//** === Shopping Cart / Functions In Objects / POO (B) */
 const shoppingCart = {
   items: [],
   // = Methods
@@ -61,25 +60,47 @@ const shoppingCart = {
           carItem.qty++;
         }
       } else {
-        alert(`Sorry! Not more Inventory`);
+        shoppingCart.items.push({ id, qty });
+        //alert(`Sorry! Not more Inventory`);
       }
     },
     // === Remove
-    remove: (id, qty) => {},
+    remove: (id, qty) => {
+      const cartItem = shoppingCart.methods.get(id); // = Validation Get
+      if (cartItem.qty - qty > 0) {
+        shoppingCart.items = shoppingCart.items.filter(
+          (item) => item.id !== id
+        );
+      }
+    },
     // === count
-    count: () => {},
+    count: () => {
+      // == Length or Reduce(acumulate  and item) ===
+      return shoppingCart.items.reduce((acc, item) => acc + item.qty, 0);
+    },
     // === get
     get: (id) => {
       const index = shoppingCart.findIndex((item) => item.id === id);
       return index >= 0 ? shoppingCart.items[index] : null;
     },
     // === Get Total
-    getTotal: () => {},
+    getTotal: () => {
+      const total = shoppingCart.items.reduce((acc, item) => {
+        const found = dataBase.methods.find(item.id);
+        return (acc += found.price * item.qty);
+      });
+      return total;
+    },
     // === Inventory Quantity
     hasInventory: (id, qty) => {
       return dataBase.items.find((item) => item.id === id).qty - qty >= 0; // == <= 0 / - 0 => Sorry Inventory ==
     },
     // === Shop All
-    purchase: () => {},
+    purchase: () => {
+      dataBase.methods.remove(shoppingCart.items);
+      shoppingCart.items = []; // => Clear Shopping Cart
+    },
   },
 };
+
+//** === Render Store === (C) */
