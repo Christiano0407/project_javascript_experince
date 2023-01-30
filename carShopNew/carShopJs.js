@@ -44,6 +44,12 @@ const dataBase = {
       price: 1300,
       qty: 80,
     },
+    {
+      id: 3,
+      title: 'Ipad Pro',
+      price: 800,
+      qty: 20,
+    },
   ],
 };
 //console.log(dataBase);
@@ -104,18 +110,30 @@ const shoppingCart = {
 };
 
 //** === Render Store === (C) */
-// => data-id => WebComponent
+// >> data-id => Reference "Id" => WebComponent <<
 const renderStore = () => {
   const html = dataBase.items.map((item) => {
     return `
         <div class="item">
            <div class="title">${item.title}</div>
-           <div class="price">Price: ${item.price}</div>
+           <div class="price">Price: ${numberToCurrency(item.price)}</div>
            <div class="qty">${item.qty} Units</div>
-           <div class="actions"><button class="add" data-id=${item.id}>Add To the Shopping Cart</button></div>
+           <div class="actions"><button class="add" data-id=${
+             item.id
+           }>Add To the Shopping Cart</button></div>
         </div>
         `;
   });
   storeContainer.innerHTML = html.join('');
 };
 renderStore();
+
+//** === Price In Dollars === (C.1) */
+// ==> Intl (Format / API) => U.S Dollars
+function numberToCurrency(number) {
+  return new Intl.NumberFormat(`en-US`, {
+    maximumSignificantDigits: 2, // => Number Digits
+    style: 'currency',
+    currency: 'USD',
+  }).format(number);
+}
