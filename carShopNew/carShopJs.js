@@ -104,3 +104,18 @@ const shoppingCart = {
 };
 
 //** === Render Store === (C) */
+// => data-id => WebComponent
+const renderStore = () => {
+  const html = dataBase.items.map((item) => {
+    return `
+        <div class="item">
+           <div class="title">${item.title}</div>
+           <div class="price">${item.price}</div>
+           <div class="qty">${item.qty} Units</div>
+           <div class="actions"><button class="add" data-id=${item.id}>Add To the Shopping Cart</button></div>
+        </div>
+        `;
+  });
+  storeContainer.innerHTML = html.join('');
+};
+renderStore();

@@ -1,10 +1,12 @@
 #store-container {
   display: flex;
   gap: 10px;
+  margin: 2rem auto;
+  padding: 1rem;
 }
 
 #store-container .item {
-  border: solid 1px #ccc;
+  border: solid 2px #333;
   padding: 20px;
 }
 
@@ -26,13 +28,17 @@
 
 .item .title {
   font-weight: bold;
+  font-size: 1.8rem;
 }
 .item .price {
   color: green;
   font-weight: bold;
+  font-size: 1.6rem;
 }
 .item div {
   padding: 5px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 .total {
@@ -43,6 +49,9 @@
 button {
   border: none;
   background-color: rgb(241, 217, 28);
-  padding: 5px 10px;
+  padding: 1.5rem 3rem;
   border-radius: 5px;
+}
+button:active {
+  transform: scale(0.9);
 }
