@@ -1,0 +1,37 @@
+body {
+  background-color: #222;
+  color: #f2f2f2;
+}
+.quiz {
+  width: 100%;
+  max-width: 50%;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: solid 5px #333333;
+  border-radius: 0.5rem;
+}
+.quiz .quiz-title {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 900;
+}
+.quiz .question,
+.choice {
+  width: 90%;
+  margin: 1rem auto;
+  font-size: 1.4rem;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
