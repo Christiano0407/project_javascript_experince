@@ -1,6 +1,13 @@
 body {
   background-color: #222;
   color: #f2f2f2;
+  height: 100vh;
+}
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 .quiz {
   width: 100%;
@@ -8,6 +15,8 @@ body {
   margin: 2rem auto;
   padding: 2rem;
   border: solid 5px #333333;
+  background-color: #f2f2f2;
+  color: #111;
   border-radius: 0.5rem;
 }
 .quiz .quiz-title {
@@ -34,4 +43,25 @@ footer {
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+.progress-text {
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.btn {
+  padding: 1rem;
+  border: none;
+  background-color: #333333;
+  color: #f4f4f4;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  margin: 1rem auto;
+  width: 35%;
+}
+.btn:hover {
+  background-color: #000;
+}
+.btn:active {
+  transform: scale(0.9);
 }
