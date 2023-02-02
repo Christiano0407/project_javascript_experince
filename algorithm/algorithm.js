@@ -12,6 +12,10 @@ function callNumber() {
     }
   }
 }
-callNumber();
+//callNumber();
+
+// === Math ===
+let maximum = Math.max(5, 10, 15, 30, 45, 60, 8, 6);
+//console.log(maximum);
 
 //**! === ===  */
