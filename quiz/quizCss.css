@@ -59,9 +59,17 @@ footer {
   margin: 1rem auto;
   width: 35%;
 }
-.btn:hover {
+.btn,
+.btn-choices:hover {
   background-color: #000;
+  color: #f4f4f4;
 }
-.btn:active {
+.btn,
+.btn-choices:active {
   transform: scale(0.9);
+}
+.btn-choices {
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }

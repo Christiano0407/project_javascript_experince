@@ -1,8 +1,8 @@
-//** * === Questions === * ==== POO Class ==== ADD => Methods, Object & Functions ====  */
+//** * === Questions Of Models === * ==== POO Class ==== ADD => Methods, Object & Functions ====  */
 //**TODO === Class === */
 export class Questions {
-  constructor(text, choice, answer) {
-    this.text = text;
+  constructor(question, choice, answer) {
+    this.question = question;
     this.choice = choice;
     this.answer = answer;
   }
