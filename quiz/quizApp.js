@@ -12,6 +12,6 @@ function main() {
   const ui = new UI();
   console.log(quiz);
   ui.showQuestions(quiz.getQuestionIndex().question);
-  ui.showChoices(quiz.getQuestionIndex().choice);
+  ui.showChoices(quiz.getQuestionIndex().choice, () => console.log('Buttons')); // === Add Callback ===
 }
 main();
