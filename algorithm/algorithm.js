@@ -28,3 +28,4 @@ function printNumber(n) {
   }
 }
 printNumber(3); // 3 * 3 => 9 (Al cuadrado)
+//** === Notación Big-O (03) === */
