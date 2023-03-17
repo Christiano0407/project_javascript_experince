@@ -28,8 +28,9 @@ main {
   height: 100vh;
   background-image: url('./src/image/01_3D.jpg');
   object-fit: cover;
-  background-position: top;
+  background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 .keys {
   width: 100%;
