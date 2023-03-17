@@ -1,10 +1,10 @@
 console.log('Music');
 //** === === Const and Variables === === */
-const keyAll = document.querySelectorAll(`.key`);
+const keys = document.querySelectorAll(`.key`);
 
 //*! === Functions and Events ===  */
 
-const playMusic = () => {
+const playMusic = (event) => {
   const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
   console.log(audio);
 
@@ -16,18 +16,17 @@ const playMusic = () => {
   audio.play(); // stop audio
   key.classList.add(`playing`);
   //key.classList.remove(`playing`);
-  setTimeout(() => {}, 0.07);
+  //setTimeout(() => {}, 0.07);
 };
 
-const removeTransition = (e) => {
+function removeTransition(e) {
   console.log(e);
   if (e.propertyName !== 'transform') return;
-  //console.log(e.propertyName);
   this.classList.remove(`playing`);
-};
+  //console.log(e.propertyName);
+}
 
-keyAll.forEach((play) =>
-  play.addEventListener('transitionend', removeTransition)
-);
+keys.forEach((key) => key.addEventListener('transitionend', removeTransition));
 
+//** === Window === */
 window.addEventListener('keydown', playMusic);
