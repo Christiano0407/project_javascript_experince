@@ -9,8 +9,40 @@
   </head>
   <body>
     <!-- === Style === -->
+    <main>
+      <h2>Update CSS Variable with <span class="h1" id="idH1">Js</span></h2>
+
+      <div class="controls">
+        <label for="spacing">Spacing: </label>
+        <input
+          id="spacing"
+          type="range"
+          name="spacing"
+          min="10"
+          max="200"
+          value="10"
+          data-sizing="px"
+        />
+
+        <label for="blur">Blur: </label>
+        <input
+          id="blur"
+          type="range"
+          name="blur"
+          min="0"
+          max="25"
+          value="10"
+          data-sizing="px"
+        />
+
+        <label for="base">Base Color: </label>
+        <input id="base" type="color" name="base" value="#fcc600" />
+
+        <img src="../drumKit/src/image/img1.jpg" alt="image-jpg" />
+      </div>
+    </main>
 
     <!--- === Javascript ===-->
-    <script src="/variables/variableJs.js"></script>
+    <script src="./variableJs.js"></script>
   </body>
 </html>
