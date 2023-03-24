@@ -130,3 +130,13 @@ const sumInventors = inventors.reduce(
   0
 );
 console.log('sum Years: ' + sumInventors);
+
+const plusYear = inventors
+  .sort((a, b) => {
+    const lastGuy = a.passed - a.year;
+    const nextGuy = b.passed - b.year;
+
+    return lastGuy > nextGuy ? -1 : 1;
+  })
+  .reduce((total, current) => total + (current.passed - current.year), 0);
+console.log(plusYear);
