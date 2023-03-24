@@ -88,7 +88,7 @@ const passedOnPlus = inventors.filter((inventor) =>
 //console.log(passedOn);
 //console.log(passedOnPlus);
 
-//**! === map === */
+//**! === map() === */
 const newList = inventors.map(
   (people) => ` My name is: ${people.first}  ${people.last}`
 );
@@ -104,6 +104,29 @@ const listPlus = inventors
   .map((name) => `Hello I'm ${name.first}`);
 console.log(listPlus);
 
-//**! === Sort === */
-const yearList = inventors.sort((a, b) => (a.year > b.year ? 1 : -1)); // return
-console.log(yearInventor);
+//**! === Sort() === */
+/* const yearList = inventors.sort((a, b) => (a.year > b.year ? 1 : -1)); // return
+console.log(yearInventor); */
+
+const newListYear = inventors.sort((a, b) => {
+  let nameA = a.first.toUpperCase();
+  let nameB = b.first.toUpperCase();
+
+  if (nameA < nameB) {
+    return -1;
+  }
+
+  if (nameA > nameB) {
+    return 1;
+  }
+});
+console.log(newListYear);
+
+//**! === reduce() === */
+let inventorsAll = 0;
+
+const sumInventors = inventors.reduce(
+  (accumulate, current) => accumulate + current.year,
+  0
+);
+console.log('sum Years: ' + sumInventors);
