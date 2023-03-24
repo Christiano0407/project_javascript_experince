@@ -1,4 +1,6 @@
-//** =========== Array Data =============  */
+//** ===  =========== Array Data ============= ===  */
+//**? === Methods: Map(), filter(), sort(), reduce() ===  */
+
 const inventors = [
   { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
   { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
@@ -57,3 +59,32 @@ const people = [
   'Beecher, Henry',
   'Biondo, Frank',
 ];
+
+//**TODO ===================================== */
+//**! ===  Filter() === */
+const addInventors = inventors.filter((inventor) =>
+  inventor.year >= 1500 && inventor.year < 1600 ? true : false
+);
+console.log(addInventors);
+console.table(addInventors);
+
+const yearInventor = inventors.filter((inventor) =>
+  inventor.year >= 1600 && inventor.year <= 1960 ? true : false
+);
+console.table(yearInventor);
+
+const inventorAll = inventors.filter((inventor) =>
+  inventor.year >= 1600 && inventor.passed <= 1750 ? true : false
+);
+console.table(inventorAll);
+
+const passedOn = inventors.filter((inventor) =>
+  (inventor.passed !== 1955) !== inventor.passed <= 1980 ? true : false
+);
+
+const passedOnPlus = inventors.filter((inventor) =>
+  inventor.passed !== 1955 ? true : false
+);
+console.log(passedOn);
+console.log(passedOnPlus);
+//**! === map === */
