@@ -60,6 +60,23 @@ const people = [
   'Biondo, Frank',
 ];
 
+const data = [
+  'car',
+  'car',
+  'truck',
+  'truck',
+  'bike',
+  'walk',
+  'car',
+  'van',
+  'bike',
+  'walk',
+  'car',
+  'van',
+  'car',
+  'truck',
+];
+
 //**TODO ===================================== */
 //**! ===  Filter() === */
 const addInventors = inventors.filter((inventor) =>
@@ -151,3 +168,14 @@ const peoplePlusTwo = people.sort((lastOne, nextOne) => {
 
 console.log(peoplePlus);
 console.log(peoplePlusTwo);
+
+//==
+const allDataCar = data.reduce((total, current) => {
+  if (!total[current]) {
+    total[current] = 0;
+  }
+
+  total[current]++;
+  return total;
+}, {});
+console.log(allDataCar);
