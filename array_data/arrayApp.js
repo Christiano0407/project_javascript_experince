@@ -65,18 +65,18 @@ const people = [
 const addInventors = inventors.filter((inventor) =>
   inventor.year >= 1500 && inventor.year < 1600 ? true : false
 );
-console.log(addInventors);
-console.table(addInventors);
+//console.log(addInventors);
+//console.table(addInventors);
 
 const yearInventor = inventors.filter((inventor) =>
   inventor.year >= 1600 && inventor.year <= 1960 ? true : false
 );
-console.table(yearInventor);
+//console.table(yearInventor);
 
 const inventorAll = inventors.filter((inventor) =>
   inventor.year >= 1600 && inventor.passed <= 1750 ? true : false
 );
-console.table(inventorAll);
+//console.table(inventorAll);
 
 const passedOn = inventors.filter((inventor) =>
   (inventor.passed !== 1955) !== inventor.passed <= 1980 ? true : false
@@ -85,6 +85,25 @@ const passedOn = inventors.filter((inventor) =>
 const passedOnPlus = inventors.filter((inventor) =>
   inventor.passed !== 1955 ? true : false
 );
-console.log(passedOn);
-console.log(passedOnPlus);
+//console.log(passedOn);
+//console.log(passedOnPlus);
+
 //**! === map === */
+const newList = inventors.map(
+  (people) => ` My name is: ${people.first}  ${people.last}`
+);
+console.log(newList);
+
+const simpleList = inventors.map(
+  (inventor) => `Hello, I'm ${inventor.first} and my year ${inventor.year}`
+);
+console.log(simpleList);
+
+const listPlus = inventors
+  .filter((inventor) => inventor.year >= 1800)
+  .map((name) => `Hello I'm ${name.first}`);
+console.log(listPlus);
+
+//**! === Sort === */
+const yearList = inventors.sort((a, b) => (a.year > b.year ? 1 : -1)); // return
+console.log(yearInventor);
