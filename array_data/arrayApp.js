@@ -120,7 +120,7 @@ const newListYear = inventors.sort((a, b) => {
     return 1;
   }
 });
-console.log(newListYear);
+//console.log(newListYear);
 
 //**! === reduce() === */
 let inventorsAll = 0;
@@ -129,7 +129,7 @@ const sumInventors = inventors.reduce(
   (accumulate, current) => accumulate + current.year,
   0
 );
-console.log('sum Years: ' + sumInventors);
+//console.log('sum Years: ' + sumInventors);
 
 const plusYear = inventors
   .sort((a, b) => {
@@ -139,4 +139,15 @@ const plusYear = inventors
     return lastGuy > nextGuy ? -1 : 1;
   })
   .reduce((total, current) => total + (current.passed - current.year), 0);
-console.log(plusYear);
+
+//console.log(plusYear);
+
+const peoplePlus = people.sort((a, b) => (a > b ? -1 : 1));
+
+const peoplePlusTwo = people.sort((lastOne, nextOne) => {
+  const [last, first] = lastOne.split(', ');
+  console.log(last, first);
+});
+
+console.log(peoplePlus);
+console.log(peoplePlusTwo);
