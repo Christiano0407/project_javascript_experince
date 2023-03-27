@@ -94,5 +94,12 @@ main {
   flex: 5;
 }
 .panel p:nth-child(2) {
-  font-size: 1.8rem;
+  font-size: 3rem;
+}
+
+/* === Media === */
+@media only screen and (max-width: 60rem) {
+  .panel p {
+    font-size: 1rem;
+  }
 }
