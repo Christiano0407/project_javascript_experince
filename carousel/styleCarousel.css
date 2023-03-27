@@ -88,9 +88,25 @@ main {
 .panel p {
   text-transform: uppercase;
   font-size: 1.4rem;
+  text-transform: uppercase;
 }
+/* === Add Javascript  === */
+.panel > *:first-child {
+  transform: translateY(-100%);
+}
+.panel.open-active > *:first-child {
+  transform: translateY(0);
+}
+.panel > *:last-child {
+  transform: translateY(100%);
+}
+.panel.open-active > *:last-child {
+  transform: translateY(0);
+}
+/* === Open Add Javascript  === */
 .panel.open {
-  font-size: 2.5rem;
+  font-size: 4rem;
+  font-weight: 700;
   flex: 5;
 }
 .panel p:nth-child(2) {
