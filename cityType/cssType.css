@@ -48,6 +48,7 @@ input.search {
 .search-form {
   max-width: 50rem;
   margin: 3rem auto;
+  background-color: #ffc600;
 }
 
 /* === ==== Suggestions ==== === */
@@ -86,6 +87,6 @@ span.population {
   font-size: 15px;
 }
 
-.hl {
+.h1 {
   background: #ffc600;
 }
