@@ -89,4 +89,7 @@ span.population {
 
 .h1 {
   background: #ffc600;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0.5rem;
 }
