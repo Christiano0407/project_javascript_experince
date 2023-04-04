@@ -30,11 +30,14 @@ const isOlder = people.some((person) => {
   const adultNew = new Date().getFullYear();
 
   if (adultNew - person.year >= 19) {
-    console.log(true, "Yes, it's adult");
+    //console.log(true, "Yes, it's adult");
   }
   return adultNew;
 });
 //console.log(isOlder);
+
+const datePlus = people.some((person) => new Date().getDate());
+//console.log('Date Plus ', datePlus);
 
 // Array.prototype.every() // is everyone 19 or older?
 const everyPeople = people.every(
@@ -43,6 +46,26 @@ const everyPeople = people.every(
 console.log(everyPeople);
 
 // Array.prototype.find()
+const findValue = people.find(
+  (person) => new Date().getFullYear() - person.year >= 19
+);
+console.log(findValue);
+
+const findTwo = (number) => {
+  return number.id === 823423;
+};
+const newFind = comments.find(findTwo);
+console.log(newFind);
+
+const findConnection = (value) => {
+  return value.id === 523423;
+};
+const plusValue = comments.find(findConnection);
+console.log(plusValue);
+
+comments.find((text, id) => {
+  console.log(text, id);
+});
 // Find is like filter, but instead returns just the one you are looking for
 // find the comment with the ID of 823423
 
