@@ -43,32 +43,54 @@ const datePlus = people.some((person) => new Date().getDate());
 const everyPeople = people.every(
   (person) => new Date().getFullYear - person.year >= 19
 );
-console.log(everyPeople);
+//console.log(everyPeople);
 
 // Array.prototype.find()
 const findValue = people.find(
   (person) => new Date().getFullYear() - person.year >= 19
 );
-console.log(findValue);
+//console.log(findValue);
 
 const findTwo = (number) => {
   return number.id === 823423;
 };
 const newFind = comments.find(findTwo);
-console.log(newFind);
+//console.log(newFind);
 
 const findConnection = (value) => {
   return value.id === 523423;
 };
 const plusValue = comments.find(findConnection);
-console.log(plusValue);
+//console.log(plusValue);
 
 comments.find((text, id) => {
-  console.log(text, id);
+  //console.log(text, id);
 });
 // Find is like filter, but instead returns just the one you are looking for
 // find the comment with the ID of 823423
+const peopleFilter = (id) => {
+  return id.id === 823423;
+};
+const filterId = comments
+  .filter((person) => person.id === 823423)
+  .find(peopleFilter);
+//console.log('Filter ', filterId);
 
 // Array.prototype.findIndex()
 // Find the comment with this ID
 // delete the comment with the ID of 823423
+const newIndex = comments.findIndex((value) => value.id === 823423);
+console.log(newIndex);
+
+const cutPlus = comments.splice(newIndex, 1);
+console.log(cutPlus);
+
+const newIndexPlus = comments.findIndex((value) => value.id === 542328);
+console.log(newIndexPlus);
+
+const newComments = [
+  ...comments.slice(0, newIndex),
+  ...comments.slice(newIndex + 1),
+  ...comments.slice(2, newIndexPlus),
+];
+console.log(newComments);
